@@ -1,0 +1,7 @@
+﻿1	2	Standard	120000
+2	3	Standard	150000
+3	4	Standard	170000
+4	5	Superior	240000
+5	6	Superior	260000
+6	7	Deluxe	350000
+7	8	Suite	420000
