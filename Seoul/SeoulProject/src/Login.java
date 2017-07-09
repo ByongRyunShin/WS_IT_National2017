@@ -59,7 +59,10 @@ public class Login extends JFrame implements ActionListener{
 		if(e.getSource()==lbt) {
 			String id=idfield.getText();
 			String pw=pwfield.getText();
-			if(id.equals("admin") && pw.equals("admin")) System.out.println("마즘");
+			if(id.equals("admin") && pw.equals("admin")) {
+				new HotelReserveManage();
+				this.dispose();
+			}
 			else {
 				ResultSet rs;
 				try {
@@ -68,7 +71,7 @@ public class Login extends JFrame implements ActionListener{
 						if(id.equals(rs.getString("id"))){
 							if(pw.equals(rs.getString("pw"))){
 								JOptionPane.showMessageDialog(this, rs.getString("name")+"님 환영합니다!");
-								
+								new HotelReserve();
 								this.dispose();
 								return;
 							}
