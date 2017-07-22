@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -6,12 +7,27 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JWindow;
 
-public class CAP_Setting extends JFrame{
+public class CAP_Setting extends JWindow{
+	public CAP_Setting(){
+		setSize(227, 227);
+		setLocationRelativeTo(null);
+		JLabel imglabel=new JLabel("DB Setting 중...");
+		String cur=System.getProperty("user.dir");
+		imglabel.setIcon(new ImageIcon(cur+"\\DataFiles\\img\\wait.gif"));
+		imglabel.setHorizontalTextPosition(JLabel.CENTER);
+		imglabel.setVerticalTextPosition(JLabel.TOP);
+		add(imglabel);
+		getContentPane().setBackground(Color.WHITE);
+		setVisible(true);
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new CAP_Setting();
+		CAP_Setting frame = new CAP_Setting();
 		try {
 			//DB연결
 			Class.forName("com.mysql.jdbc.Driver");
@@ -59,6 +75,8 @@ public class CAP_Setting extends JFrame{
 			
 			stmt.close();
 			con.close();
+			Thread.sleep(3000);
+			JOptionPane.showMessageDialog(frame, "DB Setting 완료");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
