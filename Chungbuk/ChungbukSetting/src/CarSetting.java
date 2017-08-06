@@ -38,25 +38,26 @@ public class CarSetting {
 			stmt.execute("CREATE TABLE `carproject`.`salelist` (  `s_num` INT(11) NOT NULL AUTO_INCREMENT,  `Buydate` DATE NULL,  `cid` INT(11) NULL,  `Caid` INT(11) NULL,  `Opt` VARCHAR(20) NULL,  `Color` VARCHAR(20) NULL,  `Optcost` INT(11) NULL,  `Carcost` INT(11) NULL,  `Halbu` VARCHAR(20) NULL,  `Eyyul` VARCHAR(20) NULL,  `Monthcost` INT(11) NULL,  `Dealer` INT(11) NULL,  PRIMARY KEY (`s_num`));");
 			
 			String cur=System.getProperty("user.dir"); //현재 프로젝트 경로
-			String[] flist= {"Chain", "Floor", "User", "Notice", "Room", "Reserve"};
+			String[] flist= {"CarType", "Dealer", "Manufacture", "Option", "Customer", "Car", "SaleList"};
 			String line=null;
 			BufferedReader br;
-			for(int i=0; i<6; i++) {
+			for(int i=0; i<7; i++) {
 				br=new BufferedReader(new InputStreamReader(new FileInputStream(cur+"\\DataFiles\\"+flist[i]+".txt"), "UTF-8"));
 				while((line=br.readLine())!=null) {
 					String word[]=line.trim().split("\t");
 					if (word[0].startsWith("\uFEFF")) word[0] = word[0].substring(1);
-					if(i==0 || i==3) stmt.execute("insert into `hoteldb`.`"+flist[i]+"` values('" + word[0] +"','" + word[1] +"','" + word[2] +"')");
-					else if(i==1 || i==2) stmt.execute("insert into `hoteldb`.`"+flist[i]+"` values('" + word[0] +"','" + word[1] +"','" + word[2] +"','" + word[3] +"')");
-					else if(i==4) stmt.execute("insert into `hoteldb`.`Room` values('" + word[0] +"','" + word[1] +"','" + word[2] +"','" + word[3] +"','" + word[4] +"')");
-					else if(i==5) stmt.execute("insert into `hoteldb`.`Reserve` values('" + word[0] +"','" + word[1] +"','" + word[2] +"','" + word[3] +"','" + word[4] +"','" + word[5] +"')");
+					if(i<3) stmt.execute("insert into `carproject`.`"+flist[i]+"` values('" + word[0] +"','" + word[1] +"')");
+					if(i==3) stmt.execute("insert into `carproject`.`opt` values('" + word[0] +"','" + word[1] +"','" + word[2] +"')");
+					else if(i==4) stmt.execute("insert into `carproject`.`customer` values('" + word[0] +"','" + word[1] +"','" + word[2] +"','" + word[3] + "','" + word[4] + "','" + word[5] +"','" + word[6] +"')");
+					else if(i==5) stmt.execute("insert into `carproject`.`car` values('" + word[0] +"','" + word[1] +"','" + word[2] +"','" + word[3] +"','" + word[4] + "','" + word[5] + "')");
+					else if(i==6) stmt.execute("insert into `carproject`.`salelist` values('" + word[0] +"','" + word[1] +"','" + word[2] +"','" + word[3] +"','" + word[4] +"','" + word[5] + "','" + word[6] +"','" + word[7] +"','" + word[8] +"','" + word[9] +"','" + word[10] + "','" + word[11] + "')");
 				}
 				br.close();
 			}
 			
 			//사용자  user 생성(존재하면 생성안함)
 			stmt.execute("create user IF NOT EXISTS user@localhost identified by '1234';");
-			stmt.execute("grant select, insert, delete, update on `hoteldb`.* to user@localhost;");
+			stmt.execute("grant select, insert, delete, update on `carproject`.* to user@localhost;");
 			
 			stmt.close();
 			con.close();
