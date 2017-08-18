@@ -1,3 +1,6 @@
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 
 import javafx.embed.swing.JFXPanel;
@@ -9,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-public class AdminMenu extends JFrame{
+public class AdminMenu extends JFrame implements WindowListener{
 	private Button btn[] = {new Button("차량관리"),new Button("구매목록"),new Button("돌아가기")};
 	
 	public AdminMenu() {
@@ -50,6 +53,41 @@ public class AdminMenu extends JFrame{
 				AdminMenu.this.dispose();
 			}
 		}
+		
+	}
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosed(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		new Login();
+	}
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 }

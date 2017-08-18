@@ -1,3 +1,5 @@
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,7 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 
-public class ListFrame extends JFrame{
+public class ListFrame extends JFrame implements WindowListener{
 	public ListFrame() {
 		setTitle("구매목록");
 		setSize(1550, 785);
@@ -118,5 +120,40 @@ public class ListFrame extends JFrame{
 			// TODO Auto-generated method stub
 			
 		}
+	}
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		new AdminMenu();
+	}
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
